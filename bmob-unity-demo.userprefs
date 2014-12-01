@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\classes\HelloBmob.cs">
+    <Files>
+      <File FileName="C:\Users\winse\Downloads\Tasky\Android_Starter\bmob\Transforms\Metadata.xml" Line="1" Column="1" />
+      <File FileName="C:\Users\winse\Downloads\Tasky\Android_Starter\bmob\Transforms\EnumMethods.xml" Line="1" Column="1" />
+      <File FileName="C:\Users\winse\Downloads\Tasky\Android_Starter\TaskyAndroid\Screens\TaskDetailsScreen.cs" Line="69" Column="4" />
+      <File FileName="Assets\classes\HelloBmob.cs" Line="248" Column="12" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
