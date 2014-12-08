@@ -19,6 +19,7 @@ public class HelloBmob : MonoBehaviour
 		void Start ()
 		{
 				BmobDebug.Register (print);
+				BmobDebug.level = BmobDebug.Level.TRACE;
 				Bmob = gameObject.GetComponent<BmobUnity> ();
 		}
 
@@ -241,6 +242,11 @@ public class HelloBmob : MonoBehaviour
 				});
 		}
 
+		void gotCurrentUser ()
+		{
+			print ("登录后用户： " + BmobUser.CurrentUser);
+		}
+
 		void updateuser ()
 		{
 				Bmob.Login<MyBmobUser> ("test", "123456", (resp, ex) =>
@@ -376,6 +382,12 @@ public class HelloBmob : MonoBehaviour
 				if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2 + btnWidth, btnTop, btnWidth, btnHeight), "endpoint")) {
 						endpoint ();
 				}
+
+				btnTop += btnHeight + 10 * scale;
+				if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2 - btnWidth, btnTop, btnWidth, btnHeight), "GotCurrentUser")) {
+					gotCurrentUser();
+				}
+				
 		}
 
 }
