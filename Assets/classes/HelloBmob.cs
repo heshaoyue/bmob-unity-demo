@@ -139,9 +139,9 @@ public class HelloBmob : MonoBehaviour
 
 		String toString (object obj)
 		{ 
-				if (obj is IBmobWritable) {
-						return JsonAdapter.JSON.ToJson ((IBmobWritable)obj); 
-				} else
+				//if (obj is IBmobWritable) {
+				//		return JsonAdapter.JSON.ToJson ((IBmobWritable)obj); 
+				//} else
 						return JsonAdapter.JSON.ToString (obj);
 		}
 
@@ -244,7 +244,7 @@ public class HelloBmob : MonoBehaviour
 
 		void gotCurrentUser ()
 		{
-			print ("登录后用户： " + BmobUser.CurrentUser);
+			print ("登录后用户： " + toString(BmobUser.CurrentUser));
 		}
 
 		void updateuser ()
@@ -265,6 +265,29 @@ public class HelloBmob : MonoBehaviour
 						});
 				});
 		}
+
+	void findAllUser ()
+	{
+
+		BmobQuery query = new BmobQuery ();
+		//query.WhereEqualTo ("playerName", "123");
+		query.Count ();
+		Bmob.Find<MyBmobUser> (MyBmobUser.TABLE, query, (resp, exception) =>
+		                           {
+			if (exception != null) {
+				print ("查询失败, 失败原因为： " + exception.Message);
+				return;
+			}
+			
+			List<MyBmobUser> list = resp.results;
+			BmobInt count = resp.count;
+			print ("满足条件的对象个数为： " + count.Get ());
+			foreach (var game in list) {
+				print ("获取的对象为： " + toString (game));
+			}
+		});
+
+	}
 
 		void ResetPassword ()
 		{
@@ -387,6 +410,11 @@ public class HelloBmob : MonoBehaviour
 				if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2 - btnWidth, btnTop, btnWidth, btnHeight), "GotCurrentUser")) {
 					gotCurrentUser();
 				}
+				if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2 + btnWidth, btnTop, btnWidth, btnHeight), "findAllUser")) {
+					findAllUser();
+				}
+
+
 				
 		}
 
