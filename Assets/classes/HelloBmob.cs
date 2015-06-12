@@ -9,6 +9,7 @@ using cn.bmob.tools;
 using System.Net;
 using cn.bmob.json;
 using cn.bmob.response;
+using cn.bmob.Extensions;
 
 public class HelloBmob : MonoBehaviour
 {
@@ -92,6 +93,16 @@ public class HelloBmob : MonoBehaviour
 				data.playerName = "123";
 				data.cheatMode = false;
 
+				Bmob.Create (TABLENAME, data, 
+				             (resp, exception) => {
+								if (exception != null) {
+									print ("保存失败, 失败原因为： " + exception.Message);
+									return;
+								}
+								
+								print ("保存成功, @" + resp.createdAt);
+							}
+				);
 				//Bmob.CreateTaskAsync (TABLENAME, data);
 		}
 
@@ -301,6 +312,17 @@ public class HelloBmob : MonoBehaviour
 				});
 		}
 
+		void FileUpload(){
+		Bmob.FileUpload("E:\\winsegit\\bmob\\bmob-csharp\\bmob-demo-csharp\\examples\\bmob-unity-demo\\README.md", (resp, exception) => {
+				if (exception != null) {
+					print ("上传请求失败, 失败原因为： " + exception.Message);
+					return;
+				}
+				
+				print ("上传请求发送成功！" + toString (resp));
+			});
+		}
+
 		void FindUser ()
 		{
 				BmobQuery query = new BmobQuery ();
@@ -394,9 +416,12 @@ public class HelloBmob : MonoBehaviour
 				if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2 - btnWidth, btnTop, btnWidth, btnHeight), "updateuser")) {
 						updateuser ();
 				}
-				if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2 + btnWidth, btnTop, btnWidth, btnHeight), "ResetPassword")) {
-						ResetPassword ();
-				}
+				//if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2 + btnWidth, btnTop, btnWidth, btnHeight), "ResetPassword")) {
+				//		ResetPassword ();
+				//}
+		if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2 + btnWidth, btnTop, btnWidth, btnHeight), "FileUpload")) {
+			FileUpload ();
+		}
 
 				btnTop += btnHeight + 10 * scale;
 				if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2 - btnWidth, btnTop, btnWidth, btnHeight), "FindUser")) {
